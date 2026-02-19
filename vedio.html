@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Learning Center – DriveReady Pakistan</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;list-style:none;text-decoration:none;scroll-behavior:smooth}
+:root{
+  --red:#d90429;
+  --red-dark:#8d0320;
+  --dark:#020102;
+  --dark2:#1a1a1a;
+  --white:#ffffff;
+  --bg:#f9fafb;
+  --surface:#ffffff;
+  --border:#e5e7eb;
+  --muted:#6b7280;
+  --muted2:#9ca3af;
+  --shadow:0 4px 20px rgba(0,0,0,.08);
+  --shadow-hover:0 10px 30px rgba(217,4,41,.15);
+}
+body{background:var(--bg);color:var(--dark);overflow-x:hidden}
+img{display:block}
+button,input{font-family:'Poppins',sans-serif}
+
+/* ── HEADER (ORIGINAL) ─────────────────────────────── */
+header{
+  position:fixed;top:0;left:0;width:100%;z-index:500;
+  background:var(--white);
+  box-shadow:0 2px 20px rgba(15,54,55,.1);
+}
+.nav{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:flex-start;
+  padding:20px 20px;gap:3rem;
+}
+#menu-icon{font-size:24px;cursor:pointer;display:none;color:var(--dark)}
+.logo{font-size:1.4rem;font-weight:700;color:var(--dark)}
+.logo span{color:var(--red)}
+.navbar{display:flex;column-gap:2rem;flex:1}
+.navbar a{
+  font-size:.9rem;font-weight:500;text-transform:uppercase;
+  color:var(--dark);padding:5px 0;position:relative;transition:.3s;
+}
+.navbar a::after{
+  content:'';position:absolute;width:0;height:3px;bottom:-5px;left:0;
+  background:var(--red);transition:.3s;
+}
+.navbar a:hover::after,
+.navbar .active::after{width:100%}
+.navbar a:hover,
+.navbar .active{color:var(--red)}
+#search-icon{font-size:24px;cursor:pointer;color:var(--dark);margin-left:auto}
+
+/* ── HERO (FULLY RESTORED TO ORIGINAL) ─────────────── */
+.learning-hero{
+  background:linear-gradient(135deg,var(--dark) 0%,#1a1a1a 100%);
+  color:#fff;
+  min-height:50vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:120px 20px 50px;
+  position:relative;overflow:hidden;
+  margin-top:60px;
+}
+.learning-hero::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v100H0z" fill="none"/><path d="M50 10L90 90L10 90z" fill="%23d90429" opacity="0.03"/></svg>');
+  animation:bgFloat 20s ease-in-out infinite;
+}
+@keyframes bgFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,50px)}}
+.hero-content{
+  position:relative;z-index:2;max-width:900px;
+}
+.hero-content h1{
+  font-size:2.8rem;font-weight:800;margin-bottom:15px;
+  animation:fadeInDown 1s ease;
+}
+@keyframes fadeInDown{
+  from{opacity:0;transform:translateY(-30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-content h1 span{color:var(--red)}
+.hero-content p{
+  font-size:1.1rem;opacity:.9;margin-bottom:30px;
+  animation:fadeInUp 1s ease .2s both;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.video-search-container{
+  max-width:700px;margin:0 auto;position:relative;
+  animation:fadeInUp .8s ease .4s both;
+}
+.video-search-wrapper{
+  position:relative;display:flex;align-items:center;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
+  border-radius:50px;padding:8px 8px 8px 25px;
+  box-shadow:0 10px 40px rgba(0,0,0,.3);transition:.3s;
+}
+.video-search-wrapper:focus-within{
+  box-shadow:0 15px 50px rgba(217,4,41,.4);transform:translateY(-2px);
+}
+.search-icon-video{font-size:1.5rem;color:var(--red);margin-right:15px}
+.video-search-input{
+  flex:1;border:none;outline:none;font-size:1rem;padding:12px 0;
+  background:transparent;color:var(--dark);
+}
+.video-search-input::placeholder{color:#999}
+.video-search-btn{
+  background:linear-gradient(135deg,var(--red),#8d0320);
+  color:#fff;border:none;padding:12px 30px;border-radius:50px;
+  font-size:.95rem;font-weight:600;cursor:pointer;transition:.3s;
+  display:flex;align-items:center;gap:8px;
+}
+.video-search-btn:hover{
+  transform:scale(1.05);box-shadow:0 5px 20px rgba(217,4,41,.4);
+}
+
+/* ── CATEGORY PILLS ─────────────────────────────────── */
+.category-section{
+  background:white;border-bottom:1px solid var(--border);
+  padding:16px 0;position:sticky;top:60px;z-index:90;
+}
+.category-container{max-width:1400px;margin:0 auto;padding:0 24px}
+.category-pills{
+  display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;
+}
+.category-pills::-webkit-scrollbar{height:0}
+.pill{
+  padding:8px 16px;background:var(--bg);border:none;border-radius:8px;
+  color:var(--dark);cursor:pointer;white-space:nowrap;transition:.2s;
+  font-size:.9rem;font-weight:500;flex-shrink:0;
+}
+.pill:hover{background:#e5e7eb}
+.pill.active{background:var(--dark);color:#fff}
+
+/* ── MAIN CONTENT ───────────────────────────────────── */
+.main-container{max-width:1400px;margin:0 auto;padding:24px}
+
+/* Videos Section */
+.videos-section{margin-top:20px}
+.section-info{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;
+}
+.section-info h2{font-size:1.3rem;font-weight:600;color:var(--dark)}
+.video-count{font-size:.9rem;color:var(--muted)}
+
+/* Video Grid */
+.video-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;
+}
+.video-card{cursor:pointer;transition:.2s}
+.thumbnail-container{
+  position:relative;width:100%;aspect-ratio:16/9;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  border-radius:12px;overflow:hidden;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:center;
+}
+.thumbnail-img{width:100%;height:100%;object-fit:cover}
+.category-badge{
+  position:absolute;top:8px;left:8px;background:var(--red);color:#fff;
+  padding:4px 10px;border-radius:4px;font-size:.7rem;font-weight:600;text-transform:uppercase;
+}
+.video-duration{
+  position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.85);color:#fff;
+  padding:4px 8px;border-radius:4px;font-size:.75rem;font-weight:600;
+}
+.play-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.4);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:.3s;
+}
+.video-card:hover .play-overlay{opacity:1}
+.play-overlay i{font-size:4rem;color:#fff;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.video-info h3{
+  font-size:.95rem;font-weight:600;line-height:1.4;margin-bottom:6px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.video-meta{font-size:.85rem;color:var(--muted)}
+
+/* History Section */
+.history-section-main{
+  margin:60px 0 40px;padding:24px;background:#fff;border-radius:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+}
+.history-header{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;
+}
+.history-header h2{font-size:1.5rem;font-weight:600;color:var(--dark)}
+.clear-history-btn{
+  background:var(--bg);color:var(--muted);border:1px solid var(--border);
+  padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.85rem;transition:.2s;
+  display:flex;align-items:center;gap:6px;
+}
+.clear-history-btn:hover{background:#e5e7eb;color:var(--dark)}
+.history-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;
+}
+.history-empty{
+  text-align:center;padding:60px 20px;color:var(--muted);
+}
+.history-empty i{font-size:3rem;margin-bottom:16px;opacity:.5}
+
+/* Empty State */
+.empty-state{text-align:center;padding:80px 20px;display:none}
+.empty-state.show{display:block}
+.empty-state i{font-size:4rem;color:var(--muted);opacity:.5;margin-bottom:16px}
+.empty-state h3{font-size:1.3rem;margin-bottom:8px;color:var(--dark)}
+.empty-state p{color:var(--muted)}
+
+/* ── PLAYER MODAL (FIXED) ───────────────────────────── */
+.player-modal{display:none;position:fixed;inset:0;background:#fff;z-index:999;overflow-y:auto}
+.player-modal.active{display:block}
+.player-header{
+  position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);
+  padding:16px 24px;z-index:10;display:flex;align-items:center;gap:16px;
+}
+.back-btn{
+  width:40px;height:40px;background:var(--bg);border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:1.5rem;transition:.2s;
+}
+.back-btn:hover{background:#e5e7eb}
+.player-container{max-width:1600px;margin:0 auto;padding:24px}
+.player-layout{display:grid;grid-template-columns:1fr 400px;gap:24px}
+.player-main{width:100%}
+.video-player-wrapper{
+  width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-bottom:20px;
+}
+.video-iframe{width:100%;height:100%;border:none}
+.player-info{margin-top:16px}
+.player-info h1{font-size:1.4rem;font-weight:600;margin-bottom:12px;line-height:1.4}
+.player-stats{
+  display:flex;align-items:center;gap:16px;color:var(--muted);
+  font-size:.9rem;padding-bottom:16px;border-bottom:1px solid var(--border);flex-wrap:wrap;
+}
+.watch-on-yt{
+  margin-left:auto;background:#c4302b;color:#fff;padding:8px 16px;
+  border-radius:8px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:6px;
+  transition:.2s;text-decoration:none;
+}
+.watch-on-yt:hover{background:#a00;transform:scale(1.02)}
+.player-description{
+  margin-top:16px;padding:16px;background:var(--bg);border-radius:8px;
+  color:var(--muted);line-height:1.6;font-size:.9rem;
+}
+
+/* Sidebar */
+.sidebar-title{font-size:1rem;font-weight:600;margin-bottom:12px}
+.related-video{
+  display:flex;gap:12px;padding:8px;border-radius:8px;cursor:pointer;transition:.2s;margin-bottom:8px;
+}
+.related-video:hover{background:var(--bg)}
+.related-thumbnail{
+  width:140px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;position:relative;flex-shrink:0;
+}
+.related-thumbnail img{width:100%;height:100%;object-fit:cover}
+.related-thumbnail .video-duration{
+  position:absolute;bottom:4px;right:4px;font-size:.7rem;padding:2px 6px;
+}
+.related-info h4{
+  font-size:.85rem;font-weight:500;line-height:1.3;margin-bottom:4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.related-meta{font-size:.75rem;color:var(--muted)}
+.history-sidebar-section{margin-top:32px}
+
+/* ── FOOTER (ORIGINAL) ───────────────────────────────── */
+.footer{
+  background:var(--dark);color:#f6f6f6;border-top:3px solid var(--red);
+  padding:50px 0 20px;margin-top:60px;
+}
+.footer-container{
+  max-width:1200px;margin:0 auto;padding:0 20px;
+  display:flex;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;
+}
+.footer-box{display:flex;flex-direction:column;max-width:280px}
+.footer-box h3{font-size:1.15rem;font-weight:600;margin-bottom:1.2rem;color:#fff}
+.footer-box p{font-size:.9rem;color:#bdbdbd;margin-bottom:12px;line-height:1.7}
+.footer-box a{color:#bdbdbd;margin-bottom:12px;font-size:.9rem;transition:.3s}
+.footer-box a:hover{color:var(--red);padding-left:5px}
+.social{display:flex;align-items:center;gap:1rem;margin-top:1.2rem}
+.social a{font-size:26px;color:#fff;transition:.3s}
+.social a:hover{color:var(--red);transform:translateY(-3px)}
+.copyright{padding:25px;text-align:center;color:#bdbdbd;background:var(--dark);border-top:1px solid rgba(255,255,255,.1)}
+
+/* Responsive */
+@media(max-width:1200px){.player-layout{grid-template-columns:1fr}}
+@media(max-width:768px){
+  #menu-icon{display:initial}
+  .navbar{
+    position:absolute;top:100%;right:0;left:0;flex-direction:column;row-gap:.5rem;
+    text-align:center;background:var(--bg);box-shadow:0 4px 20px rgba(15,54,55,.2);
+    clip-path:circle(0% at 0% 0%);transition:.6s;
+  }
+  .navbar a{display:block;padding:15px}
+  .navbar.active{clip-path:circle(144% at 0% 0%)}
+  .hero-content h1{font-size:2rem}
+  .main-container{padding:16px}
+  .video-grid{grid-template-columns:1fr}
+  .history-grid{grid-template-columns:1fr}
+  .related-thumbnail{width:120px}
+  .player-container{padding:16px}
+}
+@media(max-width:480px){
+  .hero-content h1{font-size:1.6rem}
+  .video-search-wrapper{padding:6px 6px 6px 15px}
+  .video-search-btn{padding:10px 20px;font-size:.85rem}
+  .pill{padding:6px 12px;font-size:.85rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+<div class="nav">
+<i class='bx bx-menu' id="menu-icon"></i>
+<a href="#" class="logo">Drive<span>Ready</span></a>
+<ul class="navbar">
+
+ <li><a href="index.html" >Home</a></li>
+            <li><a href="learning.html" >Learning</a></li>
+                <li><a href="theory.html" >Theory Test</a></li>
+<li><a href="#" class="active">Video </a></li>
+</ul>
+<i class='bx bx-search' id="search-icon"></i>
+</div>
+</header>
+
+<!-- Hero Section (RESTORED TO ORIGINAL) -->
+<section class="learning-hero">
+<div class="hero-content">
+<h1>🎥 Video Learning <span>Center</span></h1>
+<p>Master driving with expert video tutorials. Learn at your own pace with high-quality instructional content.</p>
+<div class="video-search-container">
+<form class="video-search-wrapper" onsubmit="event.preventDefault(); filterVideos();">
+<i class='bx bx-search search-icon-video'></i>
+<input type="text" class="video-search-input" id="searchInput" placeholder="Search for parking, clutch control, road test...">
+<button type="submit" class="video-search-btn">
+<i class='bx bx-search'></i> Search
+</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- Category Pills -->
+<section class="category-section">
+<div class="category-container">
+<div class="category-pills" id="categoryPills">
+<button class="pill active" onclick="filterByCategory('all', this)">All</button>
+</div>
+</div>
+</section>
+
+<!-- Main Content -->
+<div class="main-container">
+<!-- Videos Section -->
+<div class="videos-section">
+<div class="section-info">
+<h2>Video Tutorials</h2>
+<span class="video-count" id="videoCount">Loading...</span>
+</div>
+<div class="video-grid" id="videoGrid"></div>
+<div class="empty-state" id="emptyState">
+<i class='bx bx-video-off'></i>
+<h3>No videos found</h3>
+<p>Try different keywords or browse another category</p>
+</div>
+</div>
+
+<!-- Watch History Section -->
+<div class="history-section-main">
+<div class="history-header">
+<h2>Watch History</h2>
+<button class="clear-history-btn" onclick="clearHistory()">
+<i class='bx bx-trash'></i> Clear History
+</button>
+</div>
+<div class="video-grid" id="historyGrid"></div>
+</div>
+</div>
+
+<!-- Video Player Modal (FIXED for proper playback) -->
+<div class="player-modal" id="playerModal">
+<div class="player-header">
+<button class="back-btn" onclick="closePlayer()"><i class='bx bx-arrow-back'></i></button>
+<span class="logo">Drive<span>Ready</span></span>
+</div>
+<div class="player-container">
+<div class="player-layout">
+<div class="player-main">
+<div class="video-player-wrapper">
+<iframe class="video-iframe" id="youtubePlayer" src="" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe>
+</div>
+<div class="player-info">
+<h1 id="playerTitle"></h1>
+<div class="player-stats">
+<span><i class='bx bx-show'></i> <span id="playerViews"></span></span>
+<span>•</span>
+<span><i class='bx bx-time-five'></i> <span id="playerDuration"></span></span>
+<span>•</span>
+<span id="playerCategory" style="color:var(--red);font-weight:600"></span>
+<a href="#" id="youtubeLink" target="_blank" class="watch-on-yt">
+<i class='bx bxl-youtube'></i> Watch on YouTube
+</a>
+</div>
+<div class="player-description" id="playerDescription"></div>
+</div>
+</div>
+<div class="player-sidebar">
+<h3 class="sidebar-title">Related Videos</h3>
+<div id="relatedVideos"></div>
+<div class="history-sidebar-section">
+<h3 class="sidebar-title">Recent History</h3>
+<div id="historySidebar"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-box">
+<a href="#" class="logo">Drive<span>Ready</span></a>
+<p>Pakistan's leading digital platform for driving license preparation. Comprehensive training, realistic simulations, and expert guidance.</p>
+<div class="social">
+<a href="#"><i class='bx bxl-facebook'></i></a>
+<a href="#"><i class='bx bxl-twitter'></i></a>
+<a href="#"><i class='bx bxl-instagram'></i></a>
+<a href="#"><i class='bx bxl-youtube'></i></a>
+</div>
+</div>
+<div class="footer-box">
+<h3>Learning Modules</h3>
+<a href="#">Traffic Signs</a>
+<a href="#">Video Tutorials</a>
+<a href="#">Theory Test</a>
+<a href="#">Practice Tests</a>
+</div>
+<div class="footer-box">
+<h3>Company</h3>
+<a href="#">About Us</a>
+<a href="#contact">Contact</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+</div>
+<div class="footer-box">
+<h3>Get in Touch</h3>
+<p><i class='bx bx-map'></i> Lahore, Pakistan</p>
+<p><i class='bx bx-phone'></i> +92 300 1234567</p>
+<p><i class='bx bx-envelope'></i> info@driveready.pk</p>
+</div>
+</div>
+<div class="copyright">
+<p>&copy; 2025 DriveReady Pakistan. All rights reserved.</p>
+</div>
+</footer>
+
+<script>
+// ════════════════════════════════════════
+//  VIDEO DATA — Your 10 driving videos
+// ════════════════════════════════════════
+const VIDEOS = [
+  { id:1, ytId:"Vmmd7apfHwk", title:"Driving License Process in Pakistan – Complete Urdu Guide", desc:"Step-by-step guide to getting your driving license in Pakistan. Covers learner permit, e-sign computerized test, L-track practical test and final license issuance from DLIMS Punjab.", dur:"10:22", cat:"Road Test,Beginner", views:152000 },
+  { id:2, ytId:"C_L0RbOUq1Y", title:"How to Pass L-Shape Driving Test in Pakistan (Urdu)", desc:"Master the L-shape practical test for Punjab driving license. Detailed tips on slow control, reversing, steering and safely avoiding cones at every step.", dur:"8:40", cat:"Road Test,Beginner,Clutch Control", views:287000 },
+  { id:3, ytId:"0hGVi_EXM2s", title:"All Traffic Signs of Pakistan – Complete Urdu Guide", desc:"Learn all warning, mandatory and informatory traffic signs in Pakistan. Essential preparation for the computerized e-sign driving test.", dur:"14:55", cat:"Traffic Signs,Beginner", views:423000 },
+  { id:4, ytId:"OcR-dPAoT6k", title:"Car Driving for Beginners – Clutch Gear & Accelerator (Urdu)", desc:"Learn to drive a manual car from scratch in Urdu. Covers clutch control, gear shifting, biting point and moving off smoothly.", dur:"12:18", cat:"Clutch Control,Beginner", views:658000 },
+  { id:5, ytId:"DJZk7wbUFF0", title:"Pakistan Motorway Driving Rules & Speed Limits – Full Guide", desc:"Everything about driving on Pakistan motorways — speed limits, lane discipline, overtaking rules and motorway police regulations.", dur:"9:30", cat:"Road Test,Safety,Advanced", views:384000 },
+  { id:6, ytId:"HN9mzan1-KQ", title:"Defensive Driving on Pakistani Roads – Safety Tips", desc:"Practical defensive driving techniques for busy Pakistani roads. Covers city intersections, highway hazards and night driving.", dur:"16:05", cat:"Safety,Intermediate", views:312000 },
+  { id:7, ytId:"5Xs-awoSmhw", title:"E-Sign Test Preparation – All Signs Explained (Urdu & English)", desc:"Complete preparation for the computerized e-sign driving license test. Every traffic sign explained with correct meanings.", dur:"18:45", cat:"Traffic Signs,Beginner,Road Test", views:241000 },
+  { id:8, ytId:"kgZF5TEb7a8", title:"Parallel Parking & Reverse Parking Guide – Urdu", desc:"Step-by-step parallel and reverse parking with clear reference points. Perfect your parking skills for the driving test.", dur:"11:20", cat:"Parking,Intermediate", views:197000 },
+  { id:9, ytId:"6JO2SPKcNAE", title:"DLIMS Online Driving License Appointment – Pakistan Guide", desc:"How to book your driving license test appointment online through DLIMS Punjab portal. Full walkthrough of online registration.", dur:"7:55", cat:"Road Test,Beginner", views:276000 },
+  { id:10, ytId:"Dt6BVCi6O3g", title:"Car Maintenance Every Pakistani Driver Must Know", desc:"Essential vehicle checks every Pakistani driver should perform — engine oil, tyre pressure, brakes, coolant and lights.", dur:"13:10", cat:"Safety,Beginner", views:228000 }
+];
+
+// Process videos
+const videos = VIDEOS.map(v => {
+  const cats = v.cat.split(',').map(c => c.trim());
+  return { 
+    ...v, 
+    cats, 
+    primary: cats[0],
+    thumbnail: `https://img.youtube.com/vi/${v.ytId}/mqdefault.jpg`,
+    youtubeUrl: `https://www.youtube.com/watch?v=${v.ytId}`,
+    // FIXED: Use standard embed URL without nocookie to avoid playback issues
+    embedUrl: `https://www.youtube.com/embed/${v.ytId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`
+  };
+});
+
+const allCategories = [...new Set(videos.flatMap(v => v.cats))];
+
+// State
+let filteredVideos = [...videos];
+let currentCategory = 'all';
+let currentSearch = '';
+let watchHistory = JSON.parse(localStorage.getItem('driveReadyHistory')) || [];
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  renderCategoryPills();
+  renderVideoGrid(videos);
+  renderHistory();
+  
+  // Mobile menu
+  document.getElementById('menu-icon').addEventListener('click', function() {
+    document.querySelector('.navbar').classList.toggle('active');
+  });
+  
+  window.addEventListener('scroll', function() {
+    document.querySelector('.navbar').classList.remove('active');
+  });
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePlayer();
+  });
+  
+  document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') filterVideos();
+  });
+});
+
+function renderCategoryPills() {
+  const container = document.getElementById('categoryPills');
+  allCategories.forEach(category => {
+    const button = document.createElement('button');
+    button.className = 'pill';
+    button.textContent = category;
+    button.setAttribute('onclick', `filterByCategory('${category}', this)`);
+    container.appendChild(button);
+  });
+}
+
+function filterByCategory(category, element) {
+  currentCategory = category;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  element.classList.add('active');
+  filterVideos();
+}
+
+function filterVideos() {
+  currentSearch = document.getElementById('searchInput').value.toLowerCase().trim();
+  filteredVideos = videos.filter(v => {
+    const matchesCategory = currentCategory === 'all' || v.cats.includes(currentCategory);
+    const matchesSearch = currentSearch === '' || 
+      v.title.toLowerCase().includes(currentSearch) ||
+      v.desc.toLowerCase().includes(currentSearch) ||
+      v.cat.toLowerCase().includes(currentSearch);
+    return matchesCategory && matchesSearch;
+  });
+  renderVideoGrid(filteredVideos);
+}
+
+function renderVideoGrid(videosToRender) {
+  const grid = document.getElementById('videoGrid');
+  const countSpan = document.getElementById('videoCount');
+  const emptyState = document.getElementById('emptyState');
+  
+  if (videosToRender.length === 0) {
+    grid.innerHTML = '';
+    emptyState.classList.add('show');
+    countSpan.textContent = '0 videos available';
+    return;
+  }
+  
+  emptyState.classList.remove('show');
+  countSpan.textContent = `${videosToRender.length} video${videosToRender.length !== 1 ? 's' : ''} available`;
+  
+  grid.innerHTML = videosToRender.map(v => `
+    <div class="video-card" data-id="${v.id}">
+      <div class="thumbnail-container">
+        <img src="${v.thumbnail}" alt="${v.title}" class="thumbnail-img" loading="lazy">
+        <span class="category-badge">${v.primary}</span>
+        <span class="video-duration">${v.dur}</span>
+        <div class="play-overlay"><i class='bx bx-play-circle'></i></div>
+      </div>
+      <div class="video-info">
+        <h3>${v.title}</h3>
+        <div class="video-meta">${formatNumber(v.views)} views</div>
+      </div>
+    </div>
+  `).join('');
+  
+  document.querySelectorAll('.video-card').forEach(card => {
+    card.addEventListener('click', () => playVideo(parseInt(card.dataset.id)));
+  });
+}
+
+function formatNumber(num) {
+  if (num >= 1000000) return (num/1000000).toFixed(1) + 'M';
+  if (num >= 1000) return (num/1000).toFixed(1) + 'K';
+  return num.toString();
+}
+
+// ════════════════════════════════════════
+//  VIDEO PLAYER - FIXED for proper playback
+// ════════════════════════════════════════
+function playVideo(id) {
+  const video = videos.find(v => v.id === id);
+  if (!video) return;
+  
+  // Add to history
+  watchHistory = watchHistory.filter(h => h.id !== id);
+  watchHistory.unshift({
+    id: video.id, title: video.title, dur: video.dur,
+    primary: video.primary, ytId: video.ytId, views: video.views
+  });
+  if (watchHistory.length > 20) watchHistory = watchHistory.slice(0, 20);
+  localStorage.setItem('driveReadyHistory', JSON.stringify(watchHistory));
+  renderHistory();
+  
+  // Update player - FIXED: Use standard embed URL
+  document.getElementById('playerTitle').textContent = video.title;
+  document.getElementById('playerViews').textContent = formatNumber(video.views) + ' views';
+  document.getElementById('playerDuration').textContent = video.dur;
+  document.getElementById('playerCategory').textContent = video.primary;
+  document.getElementById('playerDescription').textContent = video.desc;
+  document.getElementById('youtubeLink').href = video.youtubeUrl;
+  
+  // FIXED: Set the iframe src directly
+  const iframe = document.getElementById('youtubePlayer');
+  iframe.src = `https://www.youtube.com/embed/${video.ytId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`;
+  
+  // Related videos
+  const related = videos.filter(v => v.cats.includes(video.primary) && v.id !== video.id).slice(0, 5);
+  renderRelated(related);
+  
+  // Show modal
+  document.getElementById('playerModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePlayer() {
+  document.getElementById('playerModal').classList.remove('active');
+  // FIXED: Properly stop video by removing src
+  document.getElementById('youtubePlayer').src = '';
+  document.body.style.overflow = 'auto';
+}
+
+function renderRelated(relatedVideos) {
+  const container = document.getElementById('relatedVideos');
+  if (relatedVideos.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted);padding:10px;">No related videos</p>';
+    return;
+  }
+  container.innerHTML = relatedVideos.map(v => `
+    <div class="related-video" onclick="playVideo(${v.id})">
+      <div class="related-thumbnail">
+        <img src="${v.thumbnail}" alt="${v.title}">
+        <span class="video-duration">${v.dur}</span>
+      </div>
+      <div class="related-info">
+        <h4>${v.title}</h4>
+        <span class="related-meta">${formatNumber(v.views)} views</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderHistory() {
+  const historyGrid = document.getElementById('historyGrid');
+  const historySidebar = document.getElementById('historySidebar');
+  
+  if (watchHistory.length === 0) {
+    historyGrid.innerHTML = `
+      <div class="history-empty">
+        <i class='bx bx-history'></i>
+        <h3>No watch history</h3>
+        <p>Watch some videos to see them here</p>
+      </div>
+    `;
+    historySidebar.innerHTML = '<p style="color:var(--muted);padding:10px;">No history yet</p>';
+    return;
+  }
+  
+  // Main history grid
+  historyGrid.innerHTML = watchHistory.slice(0, 6).map(v => `
+    <div class="video-card" data-id="${v.id}">
+      <div class="thumbnail-container">
+        <img src="https://img.youtube.com/vi/${v.ytId}/mqdefault.jpg" alt="${v.title}" class="thumbnail-img" loading="lazy">
+        <span class="category-badge">${v.primary}</span>
+        <span class="video-duration">${v.dur}</span>
+        <div class="play-overlay"><i class='bx bx-play-circle'></i></div>
+      </div>
+      <div class="video-info">
+        <h3>${v.title}</h3>
+        <div class="video-meta">${formatNumber(v.views)} views • Watched</div>
+      </div>
+    </div>
+  `).join('');
+  
+  historyGrid.querySelectorAll('.video-card').forEach(card => {
+    card.addEventListener('click', () => playVideo(parseInt(card.dataset.id)));
+  });
+  
+  // History sidebar
+  historySidebar.innerHTML = watchHistory.slice(0, 5).map(v => `
+    <div class="related-video" onclick="playVideo(${v.id})">
+      <div class="related-thumbnail">
+        <img src="https://img.youtube.com/vi/${v.ytId}/mqdefault.jpg" alt="${v.title}">
+        <span class="video-duration">${v.dur}</span>
+      </div>
+      <div class="related-info">
+        <h4>${v.title}</h4>
+        <span class="related-meta">${formatNumber(v.views)} views</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function clearHistory() {
+  if (confirm('Clear your entire watch history?')) {
+    watchHistory = [];
+    localStorage.removeItem('driveReadyHistory');
+    renderHistory();
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,3407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory Center - DriveReady Pakistan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            list-style: none;
+            text-decoration: none;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --main-color: #d90429;
+            --text-color: #020102;
+            --bg-color: #fff;
+            --secondary-text: #6b7280;
+            --hero-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            --correct-color: #06d6a0;
+            --wrong-color: #d90429;
+            --zen-color: #118ab2;
+            --survival-color: #ff6b35;
+            --official-color: #9d4edd;
+        }
+
+        body {
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: #f9fafb;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background: var(--bg-color);
+            box-shadow: 0 2px 20px rgba(15, 54, 55, 0.1);
+        }
+
+        .nav {
+            max-width: 1068px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 20px;
+            gap: 3rem;
+        }
+
+        #menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            color: var(--text-color);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+
+        .logo span {
+            color: var(--main-color);
+        }
+
+        .navbar {
+            display: flex;
+            column-gap: 2rem;
+            flex: 1;
+        }
+
+        .navbar a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--text-color);
+            padding: 5px 0;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: var(--main-color);
+            transition: 0.3s;
+        }
+
+        .navbar a:hover::after,
+        .navbar .active::after {
+            width: 100%;
+        }
+
+        .navbar a:hover,
+        .navbar .active {
+            color: var(--main-color);
+        }
+
+        #search-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: 0.3s;
+            margin-left: auto;
+        }
+
+        /* ENHANCED HERO SECTION WITH COMPACT LAYOUT */
+        .hero-section {
+            background: linear-gradient(135deg, var(--text-color) 0%, #1a1a1a 100%);
+            margin-top: 70px;
+            padding: 3rem 20px;
+            border-bottom: 4px solid var(--main-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 1s ease;
+            transition: all 0.3s ease;
+        }
+
+        /* HIDE HERO SECTION ON TEST SCREENS */
+        .hero-section.hidden {
+            display: none;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v100H0z" fill="none"/><path d="M50 10L90 90L10 90z" fill="%23d90429" opacity="0.03"/></svg>');
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+        }
+
+        .hero-content {
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(217, 4, 41, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: var(--main-color);
+            text-shadow: 0 0 15px rgba(217, 4, 41, 0.5);
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quick-action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .quick-action-btn:hover::before {
+            left: 100%;
+        }
+
+        .quick-action-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .quick-action-btn.practice {
+            background: linear-gradient(135deg, #118ab2, #06d6a0);
+        }
+
+        .quick-action-btn.practice:hover {
+            background: linear-gradient(135deg, #0e7599, #05b882);
+            box-shadow: 0 15px 30px rgba(17, 138, 178, 0.4);
+        }
+
+        .quick-action-btn.official {
+            background: linear-gradient(135deg, var(--main-color), #8d0320);
+        }
+
+        .quick-action-btn.official:hover {
+            background: linear-gradient(135deg, #c00322, #6a0216);
+            box-shadow: 0 15px 30px rgba(217, 4, 41, 0.4);
+        }
+
+        /* COMPACT Gamified Progress Dashboard */
+        .gamified-progress {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem;
+            border-radius: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            animation: fadeInRight 1s ease 0.6s both;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .gamified-progress::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.04) 50%,
+                transparent 100%
+            );
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-header h3 {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .progress-header h3 i {
+            color: var(--main-color);
+            animation: iconBounce 2s infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .mastery-level {
+            background: var(--main-color);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 16px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(217, 4, 41, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-bar-container {
+            background: rgba(255, 255, 255, 0.08);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--main-color), #ff4757);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 12px rgba(217, 4, 41, 0.3);
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.75rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-stats span {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.8rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            animation: statItemAppear 0.6s ease backwards;
+            animation-delay: calc(var(--item-index) * 0.1s);
+        }
+
+        @keyframes statItemAppear {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-color: rgba(217, 4, 41, 0.3);
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .icon-mastery {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 3px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .icon-streak {
+            background: linear-gradient(135deg, #ff6b35, #ffa500);
+            box-shadow: 0 3px 8px rgba(255, 107, 53, 0.4);
+        }
+
+        .icon-status {
+            background: linear-gradient(135deg, #06d6a0, #05b882);
+            box-shadow: 0 3px 8px rgba(6, 214, 160, 0.4);
+        }
+
+        .icon-player {
+            background: linear-gradient(135deg, #118ab2, #06d6a0);
+            box-shadow: 0 3px 8px rgba(17, 138, 178, 0.4);
+        }
+
+        .icon-tests {
+            background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+            box-shadow: 0 3px 8px rgba(157, 78, 221, 0.4);
+        }
+
+        .icon-accuracy {
+            background: linear-gradient(135deg, #f8961e, #f3722c);
+            box-shadow: 0 3px 8px rgba(248, 150, 30, 0.4);
+        }
+
+        .stat-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stat-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .badge-ready {
+            background: linear-gradient(135deg, #06d6a0, #05b882);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(6, 214, 160, 0.4);
+        }
+
+        .badge-not-ready {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Achievement Badges */
+        .achievement-badges {
+            display: flex;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .achievement-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            cursor: help;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-badge:hover {
+            transform: scale(1.15) rotate(8deg);
+            border-color: var(--main-color);
+            box-shadow: 0 0 10px rgba(217, 4, 41, 0.4);
+        }
+
+        .achievement-badge.locked {
+            opacity: 0.5;
+            filter: grayscale(0.8);
+        }
+
+        .achievement-badge .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .achievement-badge:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: 110%;
+        }
+
+        /* Main Container with Cards */
+        .container {
+            max-width: 1068px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+
+        /* Enhanced Cards Layout */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main-color), #ff4757);
+            opacity: 0.7;
+        }
+
+        .main-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(217, 4, 41, 0.15);
+        }
+
+        .card-header-fancy {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .card-icon-fancy {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .main-card:hover .card-icon-fancy {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .practice-icon {
+            background: linear-gradient(135deg, #118ab2, #06d6a0);
+        }
+
+        .official-icon {
+            background: linear-gradient(135deg, var(--main-color), #8d0320);
+        }
+
+        .card-title-fancy h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.2rem;
+        }
+
+        .card-title-fancy p {
+            color: var(--secondary-text);
+            font-size: 0.85rem;
+        }
+
+        .subsection-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--secondary-text);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-grid-horizontal {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .category-grid-horizontal {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .category-mini-card {
+            background: #f9fafb;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-mini-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(17, 138, 178, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .category-mini-card:hover::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        .category-mini-card:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-color: #118ab2;
+        }
+
+        .category-mini-card.selected {
+            background: linear-gradient(135deg, #118ab2, #06d6a0);
+            color: white;
+            border-color: #118ab2;
+            animation: cardPulse 2s infinite;
+        }
+
+        @keyframes cardPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(17, 138, 178, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(17, 138, 178, 0); }
+        }
+
+        .category-mini-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-mini-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mode-grid-horizontal {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .mode-mini-card {
+            background: #f9fafb;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mode-mini-card::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(17, 138, 178, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .mode-mini-card:hover::before {
+            left: 100%;
+        }
+
+        .mode-mini-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-color: #06d6a0;
+        }
+
+        .mode-mini-card.selected {
+            background: rgba(17, 138, 178, 0.1);
+            border-color: #06d6a0;
+        }
+
+        .mode-mini-icon {
+            font-size: 1.5rem;
+            width: 35px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mode-mini-info {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mode-mini-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 0.1rem;
+        }
+
+        .mode-mini-desc {
+            font-size: 0.75rem;
+            color: var(--secondary-text);
+        }
+
+        .test-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .test-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card-mini {
+            background: #f9fafb;
+            padding: 0.8rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .info-card-mini:hover {
+            transform: translateY(-3px);
+            border-color: var(--main-color);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-card-icon {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-card-value {
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: 1rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .info-card-label {
+            font-size: 0.7rem;
+            color: var(--secondary-text);
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .action-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-practice {
+            background: linear-gradient(135deg, #118ab2, #06d6a0);
+            color: white;
+            box-shadow: 0 8px 20px rgba(17, 138, 178, 0.3);
+        }
+
+        .btn-practice:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(17, 138, 178, 0.4);
+            animation: subtlePulse 0.5s ease-in-out;
+        }
+
+        .btn-official {
+            background: linear-gradient(135deg, var(--main-color), #8d0320);
+            color: white;
+            box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
+        }
+
+        .btn-official:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(217, 4, 41, 0.4);
+            animation: subtlePulse 0.5s ease-in-out;
+        }
+
+        .warning-note {
+            background: rgba(255, 107, 53, 0.1);
+            border-left: 4px solid #ff6b35;
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .warning-note p {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Screen management */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ZEN MODE TEST SCREEN */
+        .zen-quiz-container {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .zen-quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .zen-question-counter {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .zen-question-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .zen-question-header {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .zen-question-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        .zen-sign-image {
+            font-size: 4rem;
+            min-width: 100px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            animation: bounceIn 0.5s ease;
+        }
+
+        .zen-question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            flex: 1;
+        }
+
+        .zen-voice-icon {
+            font-size: 1.5rem;
+            color: var(--main-color);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .zen-voice-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .zen-options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .zen-option-btn {
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .zen-option-btn:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-color: var(--main-color);
+        }
+
+        .zen-option-btn.selected {
+            border-color: var(--correct-color);
+            background: rgba(6, 214, 160, 0.1);
+        }
+
+        .zen-option-btn.wrong {
+            border-color: var(--wrong-color);
+            background: rgba(217, 4, 41, 0.1);
+        }
+
+        .zen-option-btn.correct {
+            border-color: var(--correct-color);
+            background: rgba(6, 214, 160, 0.1);
+        }
+
+        .zen-option-letter {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .zen-option-text {
+            flex: 1;
+        }
+
+        /* FLASHCARD MODE STYLING - Grid layout */
+        .flashcard-grid-container {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .flashcard-grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .flashcard-grid-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        .flashcard-grid-counter {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .flashcard-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .flashcard-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flashcard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .flashcard-grid-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flashcard-grid-item:hover:not(.flipped) {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #118ab2;
+        }
+
+        .flashcard-grid-item.flipped {
+            background: linear-gradient(135deg, #118ab2, #06d6a0);
+            color: white;
+            border-color: #118ab2;
+        }
+
+        .flashcard-grid-sign {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .flashcard-grid-question {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .flashcard-grid-answer {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .flashcard-grid-item.flipped .flashcard-grid-answer {
+            display: block;
+        }
+
+        .flashcard-grid-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .flashcard-grid-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* RESULTS SCREEN */
+        .results-container {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .results-container {
+                padding: 1.5rem;
+            }
+        }
+
+        .result-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .result-stamp {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--main-color);
+        }
+
+        @media (max-width: 480px) {
+            .result-stamp {
+                font-size: 2rem;
+            }
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 480px) {
+            .result-score {
+                font-size: 2.5rem;
+            }
+        }
+
+        .result-percentage {
+            font-size: 1.5rem;
+            color: var(--secondary-text);
+            font-weight: 600;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .analytics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .analytics-card {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            animation: slideInUp 0.5s ease backwards;
+            animation-delay: calc(var(--card-index) * 0.1s);
+        }
+
+        .analytics-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .analytics-card .value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .analytics-card .label {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+
+        .review-section {
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .review-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .review-item {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            animation: slideInRight 0.5s ease backwards;
+            animation-delay: calc(var(--item-index) * 0.1s);
+        }
+
+        @media (max-width: 768px) {
+            .review-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .review-sign {
+            font-size: 2rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .review-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .review-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .review-answer {
+            padding: 0.8rem;
+            border-radius: 8px;
+        }
+
+        .review-answer.wrong {
+            background: rgba(217, 4, 41, 0.1);
+            border-left: 3px solid var(--wrong-color);
+        }
+
+        .review-answer.right {
+            background: rgba(6, 214, 160, 0.1);
+            border-left: 3px solid var(--correct-color);
+        }
+
+        .review-answer .label {
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .result-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .result-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .result-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+
+        @media (max-width: 768px) {
+            .result-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        .result-btn.try-again {
+            background: linear-gradient(135deg, #118ab2, #06d6a0);
+            color: white;
+        }
+
+        .result-btn.try-more {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .result-btn.back {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+        }
+
+        .result-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+       /* SURVIVAL MODE - REDESIGNED */
+.survival-quiz-container {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.survival-quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.survival-question-counter {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.survival-hearts {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.survival-heart {
+    color: var(--wrong-color);
+    transition: all 0.3s ease;
+}
+
+.survival-heart.lost {
+    color: #ccc;
+    transform: scale(0.8);
+}
+
+/* SURVIVAL GAME AREA - NEW DESIGN */
+.survival-game-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+}
+
+.survival-score-display {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #118ab2, #06d6a0);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(17, 138, 178, 0.3);
+    z-index: 3;
+}
+
+.survival-question-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+.survival-sign-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .survival-sign-container {
+        width: 250px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .survival-sign-container {
+        width: 200px;
+        height: 150px;
+    }
+}
+
+.survival-sign {
+    font-size: 5rem;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-radius: 16px;
+    border: 3px solid #e9ecef;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 2;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .survival-sign {
+        width: 100px;
+        height: 100px;
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .survival-sign {
+        width: 90px;
+        height: 90px;
+        font-size: 3.5rem;
+    }
+}
+
+.survival-sign.moving-left {
+    left: 20% !important;
+}
+
+.survival-sign.moving-right {
+    left: 80% !important;
+}
+
+.survival-options-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+    .survival-options-container {
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .survival-options-container {
+        max-width: 300px;
+    }
+}
+
+.survival-option {
+    flex: 1;
+    min-height: 120px;
+    background: white;
+    border: 3px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .survival-option {
+        min-height: 100px;
+    }
+}
+
+.survival-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-color: #118ab2;
+}
+
+.survival-option.selected {
+    border-color: #06d6a0;
+    background: rgba(6, 214, 160, 0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(6, 214, 160, 0.2);
+}
+
+.survival-option.wrong {
+    border-color: var(--wrong-color);
+    background: rgba(217, 4, 41, 0.05);
+}
+
+.survival-option.correct {
+    border-color: #06d6a0;
+    background: rgba(6, 214, 160, 0.05);
+}
+
+.option-side-indicator {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #666;
+}
+
+.survival-option-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.survival-option-description {
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+    text-align: center;
+}
+        /* OFFICIAL TEST MODE */
+        .official-quiz-container {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .official-quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .official-quiz-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        .official-question-counter {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .official-timer {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--wrong-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .official-question-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .official-question-header {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .official-question-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        .official-sign-image {
+            font-size: 4rem;
+            min-width: 100px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            animation: bounceIn 0.5s ease;
+        }
+
+        .official-question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            flex: 1;
+        }
+
+        .official-options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .official-option-btn {
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .official-option-btn:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-color: var(--main-color);
+        }
+
+        .official-option-btn.selected {
+            border-color: var(--correct-color);
+            background: rgba(6, 214, 160, 0.1);
+        }
+
+        .official-option-btn.wrong {
+            border-color: var(--wrong-color);
+            background: rgba(217, 4, 41, 0.1);
+        }
+
+        .official-option-btn.correct {
+            border-color: var(--correct-color);
+            background: rgba(6, 214, 160, 0.1);
+        }
+
+        .official-option-letter {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-color);
+            color: #f6f6f6;
+            border-top: 3px solid var(--main-color);
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1068px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-container .logo {
+            color: var(--bg-color);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-container .footer-box {
+            display: flex;
+            flex-direction: column;
+            max-width: 280px;
+        }
+
+        .footer-box p {
+            font-size: 0.9rem;
+            color: #bdbdbd;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .footer-box p i {
+            color: var(--main-color);
+            margin-right: 8px;
+        }
+
+        .social {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .social a {
+            font-size: 26px;
+            color: var(--bg-color);
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            color: var(--main-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-box h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: var(--bg-color);
+        }
+
+        .footer-box a {
+            color: #bdbdbd;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .footer-box a:hover {
+            color: var(--main-color);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            padding: 25px;
+            text-align: center;
+            color: #bdbdbd;
+            background: var(--text-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .copyright p {
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .flashcard-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .quick-actions {
+                gap: 1rem;
+            }
+
+            .quick-action-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                min-width: 180px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .analytics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .flashcard-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-icon {
+                display: initial;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                flex-direction: column;
+                row-gap: 0.5rem;
+                text-align: center;
+                background: var(--bg-color);
+                box-shadow: 0 4px 20px rgba(15, 54, 55, 0.2);
+                clip-path: circle(0% at 0% 0%);
+                transition: 0.6s;
+            }
+
+            .navbar a {
+                display: block;
+                padding: 15px;
+            }
+
+            .navbar.active {
+                clip-path: circle(144% at 0% 0%);
+            }
+
+            .hero-section {
+                padding: 2.5rem 20px;
+                min-height: auto;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quick-action-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .container {
+                padding: 2rem 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .review-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .result-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .result-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .gamified-progress {
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 2rem 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .main-card {
+                padding: 1.5rem;
+            }
+
+            .card-header-fancy {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.8rem;
+            }
+
+            .gamified-progress {
+                padding: 1rem;
+            }
+
+            .progress-header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+            }
+
+            .stat-item {
+                padding: 0.6rem;
+            }
+
+            .results-container {
+                padding: 1.5rem;
+            }
+
+            .result-stamp {
+                font-size: 2rem;
+            }
+
+            .result-score {
+                font-size: 2.5rem;
+            }
+
+            .flashcard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="#" class="logo">Drive<span>Ready</span></a>
+            <ul class="navbar">
+                    <li><a href="index.html" >Home</a></li>
+            <li><a href="learning.html" >Learning</a></li>
+                <li><a href="theory.html" class="active">Theory Test</a></li>
+            <li><a href="vedio.html">Vedios</a></li>
+        </ul>            </ul>
+            <i class='bx bx-search' id="search-icon"></i>
+        </div>
+    </header>
+
+    <!-- COMPACT HERO SECTION WITH PROGRESS DASHBOARD -->
+    <section class="hero-section" id="heroSection">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>🎮 Theory Test <span>Center</span></h1>
+                <p>Master road signs and ace your driving exam with confidence. Track your progress and become a theory test expert.</p>
+                
+                <div class="quick-actions">
+                    <button class="quick-action-btn practice" onclick="quickStartPractice()">
+                        🚀 Start Practice
+                    </button>
+                    <button class="quick-action-btn official" onclick="quickStartOfficial()">
+                        🏆 Official Test
+                    </button>
+                </div>
+            </div>
+
+            <!-- Compact Gamified Progress Dashboard -->
+            <div class="gamified-progress">
+                <div class="progress-header">
+                    <h3><i class='bx bx-trophy'></i> Your Progress</h3>
+                    <div class="mastery-level" id="masteryLevel">Beginner</div>
+                </div>
+                
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="masteryProgressBar"></div>
+                </div>
+                
+                <div class="progress-stats">
+                    <div>Current: <span id="currentPercent">0</span>%</div>
+                    <div>Target: <span>90</span>%</div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item" style="--item-index: 2;">
+                        <div class="stat-icon icon-status">
+                            ✅
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Readiness</div>
+                            <div class="stat-value">
+                                <span class="badge-not-ready" id="readinessBadge">Not Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-item" style="--item-index: 3;">
+                        <div class="stat-icon icon-player">
+                            👤
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Player</div>
+                            <div class="stat-value" id="userName">Guest</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-item" style="--item-index: 4;">
+                        <div class="stat-icon icon-tests">
+                            📝
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Tests Taken</div>
+                            <div class="stat-value" id="testsTaken">0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-item" style="--item-index: 5;">
+                        <div class="stat-icon icon-accuracy">
+                            🎯
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Avg. Accuracy</div>
+                            <div class="stat-value" id="avgAccuracy">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement Badges -->
+                <div class="achievement-badges">
+                    <div class="achievement-badge locked" title="Complete 1 test">
+                        <span>🏆</span>
+                        <div class="tooltip">First Test</div>
+                    </div>
+                    <div class="achievement-badge locked" title="Score 100% on any test">
+                        <span>💯</span>
+                        <div class="tooltip">Perfect Score</div>
+                    </div>
+                    <div class="achievement-badge locked" title="Mastery Level 50%">
+                        <span>⭐</span>
+                        <div class="tooltip">Halfway There</div>
+                    </div>
+                    <div class="achievement-badge locked" title="Streak of 10+">
+                        <span>🔥</span>
+                        <div class="tooltip">Hot Streak</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container with Cards -->
+    <div class="container">
+        <!-- Screen 1: Dashboard -->
+        <div id="screen1" class="screen active">
+            <div class="cards-container">
+                <!-- Practice Hub Card -->
+                <div class="main-card">
+                    <div class="card-header-fancy">
+                        <div class="card-icon-fancy practice-icon">🧘</div>
+                        <div class="card-title-fancy">
+                            <h2>Practice Hub</h2>
+                            <p>Master your skills</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection-label">📁 Select Category</div>
+
+                    <div class="category-grid-horizontal">
+                        <div class="category-mini-card" data-category="mandatory">
+                            <span class="category-mini-icon">🛑</span>
+                            <div class="category-mini-name">Mandatory</div>
+                        </div>
+                        <div class="category-mini-card" data-category="warning">
+                            <span class="category-mini-icon">⚠️</span>
+                            <div class="category-mini-name">Warning</div>
+                        </div>
+                        <div class="category-mini-card" data-category="info">
+                            <span class="category-mini-icon">ℹ️</span>
+                            <div class="category-mini-name">Information</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-label">🎯 Choose Mode</div>
+
+                    <div class="mode-grid-horizontal">
+                        <div class="mode-mini-card" data-mode="zen">
+                            <div class="mode-mini-icon">🧘</div>
+                            <div class="mode-mini-info">
+                                <div class="mode-mini-name">Zen Practice</div>
+                                <div class="mode-mini-desc">10 questions • No timer • Pure learning</div>
+                            </div>
+                        </div>
+                        <div class="mode-mini-card" data-mode="flashcard">
+                            <div class="mode-mini-icon">🎴</div>
+                            <div class="mode-mini-info">
+                                <div class="mode-mini-name">Flashcards</div>
+                                <div class="mode-mini-desc">10 cards • Flip to learn</div>
+                            </div>
+                        </div>
+                        <div class="mode-mini-card" data-mode="survival">
+                            <div class="mode-mini-icon">⚡</div>
+                            <div class="mode-mini-info">
+                                <div class="mode-mini-name">Survival Mode</div>
+                                <div class="mode-mini-desc">10 questions • 3 hearts • Swipe game</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="action-btn btn-practice" id="startPractice">
+                        <span>🚀 Start Practice</span>
+                    </button>
+                </div>
+
+                <!-- Official Test Card -->
+                <div class="main-card">
+                    <div class="card-header-fancy">
+                        <div class="card-icon-fancy official-icon">📝</div>
+                        <div class="card-title-fancy">
+                            <h2>Official Mock Test</h2>
+                            <p>The real challenge</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection-label">📋 Test Details</div>
+
+                    <div class="test-info-grid">
+                        <div class="info-card-mini">
+                            <div class="info-card-icon">📋</div>
+                            <div class="info-card-value">20</div>
+                            <div class="info-card-label">Questions</div>
+                        </div>
+                        <div class="info-card-mini">
+                            <div class="info-card-icon">⏱️</div>
+                            <div class="info-card-value">10 Min</div>
+                            <div class="info-card-label">Time Limit</div>
+                        </div>
+                        <div class="info-card-mini">
+                            <div class="info-card-icon">✅</div>
+                            <div class="info-card-value">90%</div>
+                            <div class="info-card-label">Pass Score</div>
+                        </div>
+                        <div class="info-card-mini">
+                            <div class="info-card-icon">🎯</div>
+                            <div class="info-card-value">Mixed</div>
+                            <div class="info-card-label">Categories</div>
+                        </div>
+                    </div>
+
+                    <div class="warning-note">
+                        <p><strong>⚠️ Important:</strong> <br>This simulates the official Pakistan driving theory test. <br> Once started, the timer cannot be paused. Good luck!</p>
+                    </div>
+                    
+                    <button class="action-btn btn-official" id="startOfficialTest">
+                        <span>🏆 Start Official Test</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Zen Mode Test -->
+        <div id="screen2" class="screen">
+            <div class="zen-quiz-container">
+                <div class="zen-quiz-header">
+                    <div class="zen-question-counter">
+                        Question <span id="zenCurrentQuestion">1</span> / <span id="zenTotalQuestions">10</span>
+                    </div>
+                    <div class="zen-voice-icon" onclick="readQuestion()">
+                        🔊
+                    </div>
+                </div>
+
+                <div class="zen-question-content">
+                    <div class="zen-question-header">
+                        <div class="zen-sign-image" id="zenSignImage">🚦</div>
+                        <div class="zen-question-text" id="zenQuestionText">What does this sign mean?</div>
+                    </div>
+
+                    <div class="zen-options-grid" id="zenOptionsGrid">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Flashcard Grid Mode -->
+        <div id="screen3" class="screen">
+            <div class="flashcard-grid-container">
+                <div class="flashcard-grid-header">
+                    <div class="flashcard-grid-counter" id="flashcardCounter">10 Flashcards • Click to flip</div>
+                    <button class="back-btn" onclick="backToDashboard()" style="width: auto; padding: 0.6rem 1.5rem; margin: 0; font-size: 0.85rem;">
+                        ← Back
+                    </button>
+                </div>
+
+                <div class="flashcard-grid" id="flashcardGrid">
+                    <!-- Flashcards will be populated by JavaScript -->
+                </div>
+
+                <div class="flashcard-grid-actions">
+                    <button class="btn-practice" onclick="tryMoreFlashcards()" style="width: auto; padding: 1rem 2rem;">
+                        🔄 Try More Flashcards
+                    </button>
+                    <button class="back-btn" onclick="backToDashboard()" style="width: auto; padding: 1rem 2rem;">
+                        ← Back to Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+
+      <!-- Screen 4: Survival Mode (REDESIGNED) -->
+<div id="screen4" class="screen">
+    <div class="survival-quiz-container">
+        <div class="survival-quiz-header">
+            <div class="survival-question-counter">
+                Question <span id="survivalCurrentQuestion">1</span> / <span id="survivalTotalQuestions">10</span>
+            </div>
+            <div class="survival-hearts" id="survivalHearts">
+                <span class="survival-heart">❤️</span>
+                <span class="survival-heart">❤️</span>
+                <span class="survival-heart">❤️</span>
+            </div>
+        </div>
+
+        <div class="survival-game-area">
+            <div class="survival-score-display">
+                Score: <span id="survivalScore">0</span>
+            </div>
+            
+            <div class="survival-question-text" id="survivalQuestionText">
+                What does this sign mean?
+            </div>
+            
+            <div class="survival-sign-container">
+                <div class="survival-sign" id="survivalSign">🚦</div>
+            </div>
+
+            <div class="survival-options-container">
+                <div class="survival-option left-option" onclick="checkSurvivalAnswer('left')">
+                    <div class="option-side-indicator">← LEFT</div>
+                    <div class="survival-option-text" id="leftOptionText">Stop Completely</div>
+                    <div class="survival-option-description">Click if you think this is correct</div>
+                </div>
+                
+                <div class="survival-option right-option" onclick="checkSurvivalAnswer('right')">
+                    <div class="option-side-indicator">RIGHT →</div>
+                    <div class="survival-option-text" id="rightOptionText">Slow Down</div>
+                    <div class="survival-option-description">Click if you think this is correct</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Screen 5: Official Test -->
+        <div id="screen5" class="screen">
+            <div class="official-quiz-container">
+                <div class="official-quiz-header">
+                    <div class="official-question-counter">
+                        Question <span id="officialCurrentQuestion">1</span> / <span id="officialTotalQuestions">20</span>
+                    </div>
+                    <div class="official-timer">
+                        ⏱️ <span id="officialTimeLeft">10:00</span>
+                    </div>
+                </div>
+
+                <div class="official-question-content">
+                    <div class="official-question-header">
+                        <div class="official-sign-image" id="officialSignImage">🚦</div>
+                        <div class="official-question-text" id="officialQuestionText">What does this sign mean?</div>
+                    </div>
+
+                    <div class="official-options-grid" id="officialOptionsGrid">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 6: Results -->
+        <div id="screen6" class="screen">
+            <div class="results-container">
+                <div class="result-header" id="resultHeader">
+                    <div class="result-stamp" id="resultStamp">🎉 Practice Complete!</div>
+                    <div class="result-score">
+                        <span id="finalScore">0</span> / <span id="finalTotal">10</span>
+                    </div>
+                    <div class="result-percentage" id="finalPercentage">0%</div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card" style="--card-index: 0;">
+                        <div class="icon">✅</div>
+                        <div class="value" id="correctCount">0</div>
+                        <div class="label">Correct</div>
+                    </div>
+                    <div class="analytics-card" style="--card-index: 1;">
+                        <div class="icon">❌</div>
+                        <div class="value" id="incorrectCount">0</div>
+                        <div class="label">Incorrect</div>
+                    </div>
+                    <div class="analytics-card" style="--card-index: 2;">
+                        <div class="icon">⏱️</div>
+                        <div class="value" id="timeTaken">0s</div>
+                        <div class="label">Time</div>
+                    </div>
+                    <div class="analytics-card" style="--card-index: 3;">
+                        <div class="icon">🎯</div>
+                        <div class="value" id="accuracy">0%</div>
+                        <div class="label">Accuracy</div>
+                    </div>
+                </div>
+
+                <div class="review-section">
+                    <h3>📝 Review Your Answers</h3>
+                    <div id="reviewList"></div>
+                </div>
+
+                <div class="result-controls">
+                    <button class="result-btn try-again" onclick="tryAgain()">🔄 Try Again</button>
+                    <button class="result-btn try-more" onclick="tryMore()">🎯 Try More</button>
+                    <button class="result-btn back" onclick="backToDashboard()">← Back to Theory</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-box">
+                <a href="#" class="logo">Drive<span>Ready</span></a>
+                <p>Pakistan's leading digital platform for driving license preparation. Comprehensive training, realistic simulations, and expert guidance to help you pass with confidence.</p>
+                <div class="social">
+                    <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h3>Learning Modules</h3>
+                <a href="learning.html">Learning Center</a>
+                <a href="theory.html">Theory Test (MCQs)</a>
+                <a href="#simulation">L-Track Simulator</a>
+                <a href="#signs">Road Signs Guide</a>
+            </div>
+
+            <div class="footer-box">
+                <h3>Company</h3>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+
+            <div class="footer-box">
+                <h3>Get in Touch</h3>
+                <p><i class='bx bx-map'></i> Lahore, Pakistan</p>
+                <p><i class='bx bx-phone'></i> +92 300 1234567</p>
+                <p><i class='bx bx-envelope'></i> info@driveready.pk</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        <p>&copy; 2025 DriveReady Pakistan. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Menu functionality
+        let menu = document.querySelector('.navbar');
+        let menuIcon = document.querySelector('#menu-icon');
+
+        menuIcon.onclick = () => {
+            menu.classList.toggle('active');
+        };
+
+        window.onscroll = () => {
+            menu.classList.remove('active');
+        };
+
+        // Quick action buttons functionality
+        function quickStartPractice() {
+            if (!currentCategory) {
+                currentCategory = 'mandatory';
+                document.querySelector(`.category-mini-card[data-category="${currentCategory}"]`).classList.add('selected');
+            }
+            if (!currentMode) {
+                currentMode = 'zen';
+                document.querySelector(`.mode-mini-card[data-mode="${currentMode}"]`).classList.add('selected');
+            }
+            startPractice();
+        }
+
+        function quickStartOfficial() {
+            startOfficialTest();
+        }
+
+        // Traffic Signs Database
+        const trafficSigns = {
+            mandatory: [
+                {sign: "🛑", question: "What does this sign mean?", correct: "Stop Completely", options: ["Stop Completely", "Slow Down", "No Entry", "Give Way"]},
+                {sign: "➡️", question: "What does this sign indicate?", correct: "Turn Right Only", options: ["Turn Right Only", "Keep Right", "Right Turn Ahead", "No Left Turn"]},
+                {sign: "⬅️", question: "What is this sign telling you?", correct: "Turn Left Only", options: ["Turn Left Only", "Keep Left", "Left Turn Ahead", "No Right Turn"]},
+                {sign: "⬆️", question: "What does this mandatory sign mean?", correct: "Go Straight Only", options: ["Go Straight Only", "One Way Street", "No U-Turn", "Speed Up"]},
+                {sign: "🔄", question: "What action is required here?", correct: "Roundabout Ahead", options: ["Roundabout Ahead", "U-Turn Allowed", "Turn Around", "Circular Road"]},
+                {sign: "🚷", question: "What does this sign prohibit?", correct: "No Pedestrians", options: ["No Pedestrians", "Pedestrian Crossing", "School Zone", "Walking Path"]},
+                {sign: "🚫", question: "What is this sign indicating?", correct: "No Entry", options: ["No Entry", "Stop", "No Parking", "Road Closed"]},
+                {sign: "🚳", question: "What does this prohibition mean?", correct: "No Bicycles", options: ["No Bicycles", "Bicycle Lane", "Bike Parking", "Cycle Path"]},
+                {sign: "📵", question: "What is prohibited by this sign?", correct: "No Mobile Phones", options: ["No Mobile Phones", "Phone Zone", "Quiet Area", "No Photography"]},
+                {sign: "🔇", question: "What does this sign require?", correct: "No Honking", options: ["No Honking", "Sound Warning", "Horn Required", "Quiet Zone"]}
+            ],
+            warning: [
+                {sign: "⚠️", question: "What does this warning sign indicate?", correct: "General Caution", options: ["General Caution", "Danger Ahead", "Stop Required", "Speed Limit"]},
+                {sign: "🚸", question: "What hazard is ahead?", correct: "School Zone / Children", options: ["School Zone / Children", "Playground", "Pedestrian Crossing", "Park Ahead"]},
+                {sign: "🦌", question: "What should you watch for?", correct: "Animals Crossing", options: ["Animals Crossing", "Zoo Ahead", "Wildlife Park", "Farm Area"]},
+                {sign: "🌊", question: "What danger does this warn about?", correct: "Slippery Road", options: ["Slippery Road", "Flood Area", "Water Ahead", "Rain Warning"]},
+                {sign: "⛰️", question: "What road condition is ahead?", correct: "Steep Hill", options: ["Steep Hill", "Mountain Area", "High Altitude", "Scenic Route"]},
+                {sign: "🌀", question: "What does this sign warn about?", correct: "Winding Road", options: ["Winding Road", "Tornado Area", "Circular Path", "Roundabout"]},
+                {sign: "⚡", question: "What hazard is indicated?", correct: "Electrical Hazard", options: ["Electrical Hazard", "Lightning Area", "Power Lines", "Storm Warning"]},
+                {sign: "🚧", question: "What should you expect?", correct: "Road Work Ahead", options: ["Road Work Ahead", "Construction Zone", "Detour", "Closed Road"]},
+                {sign: "🌉", question: "What structure is ahead?", correct: "Bridge Ahead", options: ["Bridge Ahead", "Tunnel", "Overpass", "Underpass"]},
+                {sign: "💨", question: "What weather condition is warned?", correct: "Strong Winds", options: ["Strong Winds", "Storm Ahead", "Hurricane", "Tornado"]}
+            ],
+            info: [
+                {sign: "ℹ️", question: "What type of sign is this?", correct: "Information Point", options: ["Information Point", "Help Desk", "Tourist Info", "Service Area"]},
+                {sign: "⛽", question: "What facility is available?", correct: "Fuel Station", options: ["Fuel Station", "Rest Area", "Parking", "Service Center"]},
+                {sign: "🏥", question: "What facility is nearby?", correct: "Hospital", options: ["Hospital", "First Aid", "Clinic", "Emergency Room"]},
+                {sign: "🍴", question: "What amenity is available?", correct: "Restaurant / Food", options: ["Restaurant / Food", "Rest Area", "Picnic Area", "Cafe"]},
+                {sign: "🏨", question: "What accommodation is ahead?", correct: "Hotel / Lodging", options: ["Hotel / Lodging", "Rest Stop", "Motel", "Inn"]},
+                {sign: "📞", question: "What service is available?", correct: "Telephone", options: ["Telephone", "Emergency Call", "Contact Point", "Phone Booth"]},
+                {sign: "🚻", question: "What facility is this?", correct: "Restrooms", options: ["Restrooms", "Changing Room", "Washroom", "Toilet"]},
+                {sign: "🅿️", question: "What does this sign indicate?", correct: "Parking Area", options: ["Parking Area", "Stop Here", "Rest Zone", "Waiting Area"]},
+                {sign: "🚌", question: "What public transport is available?", correct: "Bus Stop", options: ["Bus Stop", "Bus Station", "Transit Hub", "Public Transport"]},
+                {sign: "✈️", question: "What facility is nearby?", correct: "Airport", options: ["Airport", "Flight Zone", "Aviation Area", "Airfield"]}
+            ]
+        };
+
+        // Enhanced State Management
+        let currentCategory = null;
+        let currentMode = null;
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let lives = 3;
+        let timer = null;
+        let timeLeft = 600;
+        let startTime = 0;
+        let userAnswers = [];
+        let flashcardSetNumber = 1;
+
+        // User Progress Data
+        let userProgress = {
+            mastery: 45,
+            survivalScore: 8,
+            userName: "Guest",
+            testsTaken: 3,
+            totalScore: 23,
+            totalQuestions: 30,
+            achievements: [],
+            categoryScores: {
+                mandatory: {attempts: 10, correct: 8},
+                warning: {attempts: 10, correct: 7},
+                info: {attempts: 10, correct: 8}
+            }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            loadUserData();
+            updateProgressBar();
+            initializeStatsGrid();
+        });
+
+        function setupEventListeners() {
+            document.querySelectorAll('.category-mini-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.category-mini-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    currentCategory = this.dataset.category;
+                });
+            });
+
+            document.querySelectorAll('.mode-mini-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.mode-mini-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    currentMode = this.dataset.mode;
+                });
+            });
+
+            document.getElementById('startPractice').addEventListener('click', startPractice);
+            document.getElementById('startOfficialTest').addEventListener('click', startOfficialTest);
+        }
+
+        function initializeStatsGrid() {
+            // Add animation delay to stat items
+            document.querySelectorAll('.stat-item').forEach((item, index) => {
+                item.style.setProperty('--item-index', index);
+            });
+        }
+
+        function updateProgressBar() {
+            const masteryPercent = userProgress.mastery;
+            const progressBar = document.getElementById('masteryProgressBar');
+            const currentPercent = document.getElementById('currentPercent');
+            const masteryLevel = document.getElementById('masteryLevel');
+            
+            // Animate progress bar
+            progressBar.style.width = masteryPercent + '%';
+            currentPercent.textContent = masteryPercent;
+            
+            // Update mastery level with colors
+            if (masteryPercent >= 90) {
+                masteryLevel.textContent = 'Expert';
+                masteryLevel.style.background = 'linear-gradient(135deg, #06d6a0, #05b882)';
+            } else if (masteryPercent >= 70) {
+                masteryLevel.textContent = 'Advanced';
+                masteryLevel.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            } else if (masteryPercent >= 40) {
+                masteryLevel.textContent = 'Intermediate';
+                masteryLevel.style.background = 'linear-gradient(135deg, #ffa500, #ff8c00)';
+            } else {
+                masteryLevel.textContent = 'Beginner';
+                masteryLevel.style.background = 'linear-gradient(135deg, #ff6b6b, #ff4757)';
+            }
+
+            // Update all stats
+            document.getElementById('masteryPercent').textContent = masteryPercent + '%';
+            document.getElementById('survivalScore').textContent = userProgress.survivalScore;
+            document.getElementById('userName').textContent = userProgress.userName;
+            document.getElementById('testsTaken').textContent = userProgress.testsTaken;
+            
+            // Calculate average accuracy
+            const avgAccuracy = userProgress.totalQuestions > 0 
+                ? Math.round((userProgress.totalScore / userProgress.totalQuestions) * 100)
+                : 0;
+            document.getElementById('avgAccuracy').textContent = avgAccuracy + '%';
+
+            // Update readiness badge
+            if (masteryPercent >= 80) {
+                document.getElementById('readinessBadge').textContent = 'Ready';
+                document.getElementById('readinessBadge').className = 'badge-ready';
+            }
+
+            // Update achievement badges
+            updateAchievements();
+        }
+
+        function updateAchievements() {
+            const badges = document.querySelectorAll('.achievement-badge');
+            
+            // First Test
+            if (userProgress.testsTaken >= 1) {
+                badges[0].classList.remove('locked');
+                badges[0].title = "Completed 1 test!";
+            }
+            
+            // Perfect Score
+            if (userProgress.totalScore === userProgress.totalQuestions && userProgress.totalQuestions > 0) {
+                badges[1].classList.remove('locked');
+                badges[1].title = "Perfect score achieved!";
+            }
+            
+            // Halfway Mastery
+            if (userProgress.mastery >= 50) {
+                badges[2].classList.remove('locked');
+                badges[2].title = "Mastery Level 50%+";
+            }
+            
+            // Hot Streak
+            if (userProgress.survivalScore >= 10) {
+                badges[3].classList.remove('locked');
+                badges[3].title = "Streak of 10+!";
+            }
+        }
+
+        function startPractice() {
+            if (!currentCategory) {
+                showNotification('⚠️ Please select a category first!', 'warning');
+                return;
+            }
+            if (!currentMode) {
+                showNotification('⚠️ Please select a practice mode first!', 'warning');
+                return;
+            }
+
+            currentQuestions = shuffleArray([...trafficSigns[currentCategory]]).slice(0, 10);
+            currentQuestionIndex = 0;
+            score = 0;
+            lives = 3;
+            userAnswers = [];
+            startTime = Date.now();
+
+            switch(currentMode) {
+                case 'zen':
+                    showZenTest();
+                    break;
+                case 'flashcard':
+                    showFlashcards();
+                    break;
+                case 'survival':
+                    showSurvivalTest();
+                    break;
+            }
+        }
+
+        function startOfficialTest() {
+            const allQuestions = [
+                ...trafficSigns.mandatory,
+                ...trafficSigns.warning,
+                ...trafficSigns.info
+            ];
+            currentQuestions = shuffleArray(allQuestions).slice(0, 20);
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            startTime = Date.now();
+            timeLeft = 600;
+
+            showScreen('screen5');
+            startOfficialTimer();
+            showOfficialQuestion();
+        }
+
+        // MODIFIED: Hide hero section on test screens
+        function hideHeroSection() {
+            document.getElementById('heroSection').classList.add('hidden');
+            // Adjust container margin since hero is hidden
+            document.querySelector('.container').style.marginTop = '90px';
+        }
+
+        // MODIFIED: Show hero section on dashboard
+        function showHeroSection() {
+            document.getElementById('heroSection').classList.remove('hidden');
+            // Reset container margin
+            document.querySelector('.container').style.marginTop = '0';
+        }
+
+        // MODIFIED: Updated showScreen function
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+            
+            // Show hero only on dashboard (screen1)
+            if (screenId === 'screen1') {
+                showHeroSection();
+            } else {
+                hideHeroSection();
+            }
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // ZEN MODE FUNCTIONS
+        function showZenTest() {
+            showScreen('screen2');
+            showZenQuestion();
+        }
+
+        function showZenQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                showResults();
+                return;
+            }
+
+            const question = currentQuestions[currentQuestionIndex];
+            document.getElementById('zenCurrentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('zenTotalQuestions').textContent = currentQuestions.length;
+            document.getElementById('zenSignImage').textContent = question.sign;
+            document.getElementById('zenQuestionText').textContent = question.question;
+
+            const optionsGrid = document.getElementById('zenOptionsGrid');
+            optionsGrid.innerHTML = '';
+
+            const shuffledOptions = shuffleArray([...question.options]);
+            const letters = ['A', 'B', 'C', 'D'];
+            
+            shuffledOptions.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'zen-option-btn';
+                btn.innerHTML = `
+                    <div class="zen-option-letter">${letters[index]}</div>
+                    <div class="zen-option-text">${option}</div>
+                `;
+                btn.addEventListener('click', () => checkZenAnswer(option, question.correct));
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        function checkZenAnswer(selected, correct) {
+            const isCorrect = selected === correct;
+            userAnswers.push({
+                question: currentQuestions[currentQuestionIndex],
+                selected: selected,
+                correct: isCorrect
+            });
+
+            // Disable all buttons
+            const buttons = document.querySelectorAll('.zen-option-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('selected');
+                
+                const optionText = btn.querySelector('.zen-option-text').textContent;
+                if (optionText === correct) {
+                    btn.classList.add('correct');
+                } else if (optionText === selected && !isCorrect) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Update category stats
+            if (currentCategory) {
+                userProgress.categoryScores[currentCategory].attempts++;
+                if (isCorrect) userProgress.categoryScores[currentCategory].correct++;
+            }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                showZenQuestion();
+            }, 1500);
+        }
+
+        // FLASHCARD FUNCTIONS
+        function showFlashcards() {
+            showScreen('screen3');
+            document.getElementById('flashcardCounter').textContent = currentQuestions.length + ' Flashcards • Click to flip';
+            renderFlashcards();
+        }
+
+        function renderFlashcards() {
+            const flashcardGrid = document.getElementById('flashcardGrid');
+            flashcardGrid.innerHTML = '';
+
+            currentQuestions.forEach((question, index) => {
+                const flashcardItem = document.createElement('div');
+                flashcardItem.className = 'flashcard-grid-item';
+                flashcardItem.innerHTML = `
+                    <div class="flashcard-grid-sign">${question.sign}</div>
+                    <div class="flashcard-grid-question">${question.question}</div>
+                    <div class="flashcard-grid-answer">${question.correct}</div>
+                `;
+
+                flashcardItem.addEventListener('click', () => {
+                    flashcardItem.classList.toggle('flipped');
+                });
+
+                flashcardGrid.appendChild(flashcardItem);
+            });
+        }
+
+        function tryMoreFlashcards() {
+            // Get more questions from the same category
+            const remainingQuestions = trafficSigns[currentCategory].filter(q => 
+                !currentQuestions.some(cq => cq.sign === q.sign)
+            );
+            
+            if (remainingQuestions.length > 0) {
+                const newQuestions = shuffleArray(remainingQuestions).slice(0, Math.min(10, remainingQuestions.length));
+                currentQuestions = [...currentQuestions, ...newQuestions];
+                showFlashcards();
+            } else {
+                showNotification('🎉 You have practiced all signs in this category!', 'success');
+            }
+        }
+
+       // SURVIVAL MODE FUNCTIONS (REDESIGNED)
+function showSurvivalTest() {
+    showScreen('screen4');
+    updateSurvivalHearts();
+    updateSurvivalScore();
+    showSurvivalQuestion();
+}
+
+function updateSurvivalHearts() {
+    const heartsContainer = document.getElementById('survivalHearts');
+    heartsContainer.innerHTML = '';
+    
+    for (let i = 0; i < 3; i++) {
+        const heart = document.createElement('span');
+        heart.className = i < lives ? 'survival-heart' : 'survival-heart lost';
+        heart.textContent = '❤️';
+        heartsContainer.appendChild(heart);
+    }
+}
+
+function updateSurvivalScore() {
+    document.getElementById('survivalScore').textContent = score;
+}
+
+function showSurvivalQuestion() {
+    if (currentQuestionIndex >= currentQuestions.length || lives <= 0) {
+        showResults();
+        return;
+    }
+
+    const question = currentQuestions[currentQuestionIndex];
+    
+    // Update UI
+    document.getElementById('survivalCurrentQuestion').textContent = currentQuestionIndex + 1;
+    document.getElementById('survivalTotalQuestions').textContent = currentQuestions.length;
+    document.getElementById('survivalSign').textContent = question.sign;
+    document.getElementById('survivalQuestionText').textContent = question.question;
+
+    // Reset options styling
+    document.querySelectorAll('.survival-option').forEach(option => {
+        option.classList.remove('selected', 'correct', 'wrong');
+        option.style.pointerEvents = 'auto';
+    });
+
+    // Randomly assign correct answer to left or right
+    const correctSide = Math.random() > 0.5 ? 'left' : 'right';
+    const wrongSide = correctSide === 'left' ? 'right' : 'left';
+    survivalCurrentCorrectSide = correctSide;
+
+    // Get wrong options (exclude correct answer)
+    const wrongOptions = question.options.filter(opt => opt !== question.correct);
+    const randomWrongOption = wrongOptions[Math.floor(Math.random() * wrongOptions.length)];
+
+    // Assign texts to options
+    if (correctSide === 'left') {
+        document.getElementById('leftOptionText').textContent = question.correct;
+        document.getElementById('rightOptionText').textContent = randomWrongOption;
+    } else {
+        document.getElementById('leftOptionText').textContent = randomWrongOption;
+        document.getElementById('rightOptionText').textContent = question.correct;
+    }
+
+    // Reset sign position
+    const sign = document.getElementById('survivalSign');
+    sign.style.left = '50%';
+    sign.classList.remove('moving-left', 'moving-right');
+}
+
+function checkSurvivalAnswer(selectedSide) {
+    if (!survivalCurrentCorrectSide) return;
+
+    const sign = document.getElementById('survivalSign');
+    const isCorrect = selectedSide === survivalCurrentCorrectSide;
+
+    // Disable options
+    document.querySelectorAll('.survival-option').forEach(option => {
+        option.style.pointerEvents = 'none';
+    });
+
+    // Highlight selected option
+    const selectedOption = document.querySelector(`.${selectedSide}-option`);
+    selectedOption.classList.add('selected');
+    
+    if (isCorrect) {
+        selectedOption.classList.add('correct');
+        score++;
+    } else {
+        selectedOption.classList.add('wrong');
+        lives--;
+        updateSurvivalHearts();
+    }
+
+    // Highlight correct option
+    const correctOption = document.querySelector(`.${survivalCurrentCorrectSide}-option`);
+    correctOption.classList.add('correct');
+
+    // Animate sign moving to correct side
+    sign.classList.add(survivalCurrentCorrectSide === 'left' ? 'moving-left' : 'moving-right');
+
+    // Store user answer
+    userAnswers.push({
+        question: currentQuestions[currentQuestionIndex],
+        selected: selectedSide,
+        correct: isCorrect,
+        correctAnswer: currentQuestions[currentQuestionIndex].correct,
+        selectedText: selectedSide === 'left' ? 
+            document.getElementById('leftOptionText').textContent : 
+            document.getElementById('rightOptionText').textContent
+    });
+
+    // Update score
+    updateSurvivalScore();
+
+    // Update category stats
+    if (currentCategory) {
+        userProgress.categoryScores[currentCategory].attempts++;
+        if (isCorrect) userProgress.categoryScores[currentCategory].correct++;
+    }
+
+    // Move to next question after delay
+    setTimeout(() => {
+        currentQuestionIndex++;
+        
+        if (lives <= 0 || currentQuestionIndex >= currentQuestions.length) {
+            showResults();
+        } else {
+            showSurvivalQuestion();
+        }
+    }, 2000);
+}
+        // OFFICIAL TEST FUNCTIONS
+        function startOfficialTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('officialTimeLeft').textContent = 
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    showResults();
+                }
+            }, 1000);
+        }
+
+        function showOfficialQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                clearInterval(timer);
+                showResults();
+                return;
+            }
+
+            const question = currentQuestions[currentQuestionIndex];
+            document.getElementById('officialCurrentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('officialTotalQuestions').textContent = currentQuestions.length;
+            document.getElementById('officialSignImage').textContent = question.sign;
+            document.getElementById('officialQuestionText').textContent = question.question;
+
+            const optionsGrid = document.getElementById('officialOptionsGrid');
+            optionsGrid.innerHTML = '';
+
+            const shuffledOptions = shuffleArray([...question.options]);
+            const letters = ['A', 'B', 'C', 'D'];
+            
+            shuffledOptions.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'official-option-btn';
+                btn.innerHTML = `
+                    <div class="official-option-letter">${letters[index]}</div>
+                    <div class="zen-option-text">${option}</div>
+                `;
+                btn.addEventListener('click', () => checkOfficialAnswer(option, question.correct));
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        function checkOfficialAnswer(selected, correct) {
+            const isCorrect = selected === correct;
+            userAnswers.push({
+                question: currentQuestions[currentQuestionIndex],
+                selected: selected,
+                correct: isCorrect
+            });
+
+            // Disable all buttons
+            const buttons = document.querySelectorAll('.official-option-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('selected');
+                
+                const optionText = btn.querySelector('.zen-option-text').textContent;
+                if (optionText === correct) {
+                    btn.classList.add('correct');
+                } else if (optionText === selected && !isCorrect) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            if (isCorrect) {
+                score++;
+            }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                showOfficialQuestion();
+            }, 1000);
+        }
+
+        // RESULTS FUNCTIONS
+        function showResults() {
+            if (timer) clearInterval(timer);
+            
+            const totalQuestions = currentQuestions.length;
+            const percentage = (score / totalQuestions) * 100;
+            const timeTaken = Math.floor((Date.now() - startTime) / 1000);
+
+            // Update user progress
+            userProgress.testsTaken++;
+            userProgress.totalScore += score;
+            userProgress.totalQuestions += totalQuestions;
+
+            // Update mastery based on performance
+            const masteryGain = Math.floor(percentage / 10);
+            userProgress.mastery = Math.min(100, userProgress.mastery + masteryGain);
+
+            // Update survival score if applicable
+            if (currentMode === 'survival' && score > userProgress.survivalScore) {
+                userProgress.survivalScore = score;
+            }
+
+            // Save progress
+            saveUserData();
+
+            // Update UI
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('finalTotal').textContent = totalQuestions;
+            document.getElementById('finalPercentage').textContent = percentage.toFixed(0) + '%';
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('incorrectCount').textContent = totalQuestions - score;
+            document.getElementById('timeTaken').textContent = timeTaken + 's';
+            document.getElementById('accuracy').textContent = percentage.toFixed(0) + '%';
+
+            const resultHeader = document.getElementById('resultHeader');
+            const resultStamp = document.getElementById('resultStamp');
+            
+            if (currentMode === 'official') {
+                const passed = percentage >= 90;
+                if (passed) {
+                    resultStamp.textContent = '🎉 PASSED!';
+                    resultStamp.style.color = '#06d6a0';
+                } else {
+                    resultStamp.textContent = '❌ FAILED';
+                    resultStamp.style.color = '#d90429';
+                }
+            } else {
+                resultStamp.textContent = '🎉 Practice Complete!';
+                resultStamp.style.color = '#667eea';
+            }
+
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+            
+            userAnswers.forEach((answer, index) => {
+                const item = document.createElement('div');
+                item.className = 'review-item';
+                item.style.setProperty('--item-index', index);
+                item.innerHTML = `
+                    <div class="review-sign">${answer.question.sign}</div>
+                    <div class="review-content">
+                        <div class="review-answer ${answer.correct ? 'right' : 'wrong'}">
+                            <div class="label">Your Answer</div>
+                            <div>${answer.selected}</div>
+                        </div>
+                        <div class="review-answer right">
+                            <div class="label">Correct Answer</div>
+                            <div>${answer.question.correct}</div>
+                        </div>
+                    </div>
+                `;
+                reviewList.appendChild(item);
+            });
+
+            showScreen('screen6');
+            updateProgressBar();
+        }
+
+        function tryAgain() {
+            currentQuestionIndex = 0;
+            score = 0;
+            lives = 3;
+            userAnswers = [];
+            startTime = Date.now();
+
+            switch(currentMode) {
+                case 'zen':
+                    showZenTest();
+                    break;
+                case 'survival':
+                    showSurvivalTest();
+                    break;
+                case 'official':
+                    timeLeft = 600;
+                    startOfficialTest();
+                    break;
+                case 'flashcard':
+                    currentQuestions = shuffleArray([...trafficSigns[currentCategory]]).slice(0, 10);
+                    showFlashcards();
+                    break;
+            }
+        }
+
+        function tryMore() {
+            backToDashboard();
+            // Auto-select same category and mode
+            setTimeout(() => {
+                const categoryCard = document.querySelector(`[data-category="${currentCategory}"]`);
+                const modeCard = document.querySelector(`[data-mode="${currentMode}"]`);
+                if (categoryCard) categoryCard.click();
+                if (modeCard) modeCard.click();
+                document.getElementById('startPractice').click();
+            }, 100);
+        }
+
+        // MODIFIED: Back to dashboard function
+        function backToDashboard() {
+            showScreen('screen1');
+            if (timer) clearInterval(timer);
+            updateProgressBar();
+        }
+
+        // UTILITY FUNCTIONS
+        function saveUserData() {
+            localStorage.setItem('driveReadyProgress', JSON.stringify(userProgress));
+        }
+
+        function loadUserData() {
+            const savedData = localStorage.getItem('driveReadyProgress');
+            if (savedData) {
+                userProgress = JSON.parse(savedData);
+                // Ensure all required fields exist
+                userProgress.categoryScores = userProgress.categoryScores || {
+                    mandatory: {attempts: 0, correct: 0},
+                    warning: {attempts: 0, correct: 0},
+                    info: {attempts: 0, correct: 0}
+                };
+                userProgress.achievements = userProgress.achievements || [];
+            }
+        }
+
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#06d6a0' : '#ff6b6b'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
+            `;
+            
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 3300);
+        }
+
+        function readQuestion() {
+            // For voice functionality - would integrate with Web Speech API
+            if ('speechSynthesis' in window) {
+                const speech = new SpeechSynthesisUtterance();
+                speech.text = document.getElementById('zenQuestionText').textContent;
+                speech.rate = 1;
+                speech.pitch = 1;
+                window.speechSynthesis.speak(speech);
+            } else {
+                showNotification('Voice not supported in this browser', 'warning');
+            }
+        }
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+    </script>
+</body>
+</html>
